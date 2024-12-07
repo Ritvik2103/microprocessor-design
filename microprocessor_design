@@ -1,0 +1,1202 @@
+// Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+// Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+// --------------------------------------------------------------------------------
+// Tool Version: Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
+// Date        : Sat Dec  7 17:35:14 2024
+// Host        : LAPTOP-3U4GRAPR running 64-bit major release  (build 9200)
+// Command     : write_verilog microprocessor_design
+// Design      : microprocessor
+// Purpose     : This is a Verilog netlist of the current design or from a specific cell of the design. The output is an
+//               IEEE 1364-2001 compliant Verilog HDL file that contains netlist information obtained from the input
+//               design files.
+// Device      : xc7k70tfbv676-1
+// --------------------------------------------------------------------------------
+`timescale 1 ps / 1 ps
+
+module alu
+   (zero_flag_OBUF,
+    carry_flag_OBUF,
+    O,
+    \instruction[3] ,
+    \instruction[2] ,
+    \instruction[2]_0 ,
+    \instruction[3]_0 ,
+    \instruction[1] ,
+    Q,
+    E,
+    write_enable_reg_0,
+    write_enable_reg_1,
+    write_enable_reg_2,
+    zero_flag_reg_0,
+    CLK,
+    carry_flag_reg_0,
+    DI,
+    S,
+    instruction_IBUF,
+    D,
+    write_sel_IBUF);
+  output zero_flag_OBUF;
+  output carry_flag_OBUF;
+  output [3:0]O;
+  output \instruction[3] ;
+  output \instruction[2] ;
+  output \instruction[2]_0 ;
+  output \instruction[3]_0 ;
+  output \instruction[1] ;
+  output [3:0]Q;
+  output [0:0]E;
+  output [0:0]write_enable_reg_0;
+  output [0:0]write_enable_reg_1;
+  output [0:0]write_enable_reg_2;
+  input zero_flag_reg_0;
+  input CLK;
+  input carry_flag_reg_0;
+  input [1:0]DI;
+  input [3:0]S;
+  input [3:0]instruction_IBUF;
+  input [3:0]D;
+  input [1:0]write_sel_IBUF;
+
+  wire \<const0> ;
+  wire \<const1> ;
+  wire CLK;
+  wire [3:0]D;
+  wire [1:0]DI;
+  wire [0:0]E;
+  wire [3:0]O;
+  wire [3:0]Q;
+  wire [3:0]S;
+  wire carry_flag_OBUF;
+  wire carry_flag_reg_0;
+  wire \instruction[1] ;
+  wire \instruction[2] ;
+  wire \instruction[2]_0 ;
+  wire \instruction[3] ;
+  wire \instruction[3]_0 ;
+  wire [3:0]instruction_IBUF;
+  wire result0__0_carry_n_1;
+  wire result0__0_carry_n_2;
+  wire result0__0_carry_n_3;
+  wire write_enable;
+  wire write_enable_i_1_n_0;
+  wire [0:0]write_enable_reg_0;
+  wire [0:0]write_enable_reg_1;
+  wire [0:0]write_enable_reg_2;
+  wire [1:0]write_sel_IBUF;
+  wire zero_flag_OBUF;
+  wire zero_flag_reg_0;
+
+  GND GND
+       (.G(\<const0> ));
+  VCC VCC
+       (.P(\<const1> ));
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  LUT3 #(
+    .INIT(8'h01)) 
+    carry_flag_i_2
+       (.I0(instruction_IBUF[3]),
+        .I1(instruction_IBUF[2]),
+        .I2(instruction_IBUF[1]),
+        .O(\instruction[3] ));
+  FDRE #(
+    .INIT(1'b0)) 
+    carry_flag_reg
+       (.C(CLK),
+        .CE(\<const1> ),
+        .D(carry_flag_reg_0),
+        .Q(carry_flag_OBUF),
+        .R(\<const0> ));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  LUT3 #(
+    .INIT(8'h02)) 
+    \register1[3]_i_1 
+       (.I0(write_enable),
+        .I1(write_sel_IBUF[1]),
+        .I2(write_sel_IBUF[0]),
+        .O(E));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  LUT3 #(
+    .INIT(8'h20)) 
+    \register2[3]_i_1 
+       (.I0(write_enable),
+        .I1(write_sel_IBUF[1]),
+        .I2(write_sel_IBUF[0]),
+        .O(write_enable_reg_0));
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  LUT3 #(
+    .INIT(8'h20)) 
+    \register3[3]_i_1 
+       (.I0(write_enable),
+        .I1(write_sel_IBUF[0]),
+        .I2(write_sel_IBUF[1]),
+        .O(write_enable_reg_1));
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  LUT3 #(
+    .INIT(8'h80)) 
+    \register4[3]_i_1 
+       (.I0(write_enable),
+        .I1(write_sel_IBUF[1]),
+        .I2(write_sel_IBUF[0]),
+        .O(write_enable_reg_2));
+  CARRY4 result0__0_carry
+       (.CI(\<const0> ),
+        .CO({result0__0_carry_n_1,result0__0_carry_n_2,result0__0_carry_n_3}),
+        .CYINIT(\<const0> ),
+        .DI({\<const0> ,DI,\<const0> }),
+        .O(O),
+        .S(S));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT4 #(
+    .INIT(16'h0004)) 
+    \result[0]_i_4 
+       (.I0(instruction_IBUF[2]),
+        .I1(instruction_IBUF[3]),
+        .I2(instruction_IBUF[0]),
+        .I3(instruction_IBUF[1]),
+        .O(\instruction[2]_0 ));
+  LUT2 #(
+    .INIT(4'h1)) 
+    \result[1]_i_7 
+       (.I0(instruction_IBUF[2]),
+        .I1(instruction_IBUF[3]),
+        .O(\instruction[2] ));
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  LUT2 #(
+    .INIT(4'h2)) 
+    \result[1]_i_8 
+       (.I0(instruction_IBUF[3]),
+        .I1(instruction_IBUF[2]),
+        .O(\instruction[3]_0 ));
+  LUT2 #(
+    .INIT(4'h1)) 
+    \result[3]_i_3 
+       (.I0(instruction_IBUF[1]),
+        .I1(instruction_IBUF[0]),
+        .O(\instruction[1] ));
+  FDRE #(
+    .INIT(1'b0)) 
+    \result_reg[0] 
+       (.C(CLK),
+        .CE(\<const1> ),
+        .D(D[0]),
+        .Q(Q[0]),
+        .R(\<const0> ));
+  FDRE #(
+    .INIT(1'b0)) 
+    \result_reg[1] 
+       (.C(CLK),
+        .CE(\<const1> ),
+        .D(D[1]),
+        .Q(Q[1]),
+        .R(\<const0> ));
+  FDRE #(
+    .INIT(1'b0)) 
+    \result_reg[2] 
+       (.C(CLK),
+        .CE(\<const1> ),
+        .D(D[2]),
+        .Q(Q[2]),
+        .R(\<const0> ));
+  FDRE #(
+    .INIT(1'b0)) 
+    \result_reg[3] 
+       (.C(CLK),
+        .CE(\<const1> ),
+        .D(D[3]),
+        .Q(Q[3]),
+        .R(\<const0> ));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT4 #(
+    .INIT(16'h15FF)) 
+    write_enable_i_1
+       (.I0(instruction_IBUF[2]),
+        .I1(instruction_IBUF[0]),
+        .I2(instruction_IBUF[1]),
+        .I3(instruction_IBUF[3]),
+        .O(write_enable_i_1_n_0));
+  FDRE #(
+    .INIT(1'b0)) 
+    write_enable_reg
+       (.C(CLK),
+        .CE(\<const1> ),
+        .D(write_enable_i_1_n_0),
+        .Q(write_enable),
+        .R(\<const0> ));
+  FDRE #(
+    .INIT(1'b0)) 
+    zero_flag_reg
+       (.C(CLK),
+        .CE(\<const1> ),
+        .D(zero_flag_reg_0),
+        .Q(zero_flag_OBUF),
+        .R(\<const0> ));
+endmodule
+
+(* STRUCTURAL_NETLIST = "yes" *)
+module microprocessor
+   (clk,
+    reset,
+    instruction,
+    read_sel1,
+    read_sel2,
+    write_sel,
+    result,
+    zero_flag,
+    carry_flag);
+  input clk;
+  input reset;
+  input [3:0]instruction;
+  input [1:0]read_sel1;
+  input [1:0]read_sel2;
+  input [1:0]write_sel;
+  output [3:0]result;
+  output zero_flag;
+  output carry_flag;
+
+  wire alu_unit_n_10;
+  wire alu_unit_n_2;
+  wire alu_unit_n_3;
+  wire alu_unit_n_4;
+  wire alu_unit_n_5;
+  wire alu_unit_n_6;
+  wire alu_unit_n_7;
+  wire alu_unit_n_8;
+  wire alu_unit_n_9;
+  wire carry_flag;
+  wire carry_flag_OBUF;
+  wire clk;
+  wire clk_IBUF;
+  wire clk_IBUF_BUFG;
+  wire [3:0]instruction;
+  wire [3:0]instruction_IBUF;
+  wire [1:0]read_sel1;
+  wire [1:0]read_sel1_IBUF;
+  wire [1:0]read_sel2;
+  wire [1:0]read_sel2_IBUF;
+  wire register1;
+  wire register2;
+  wire register3;
+  wire register4;
+  wire reset;
+  wire reset_IBUF;
+  wire [3:0]result;
+  wire [3:0]result_0;
+  wire [3:0]result_OBUF;
+  wire rf_n_0;
+  wire rf_n_10;
+  wire rf_n_11;
+  wire rf_n_5;
+  wire rf_n_6;
+  wire rf_n_7;
+  wire rf_n_8;
+  wire rf_n_9;
+  wire [1:0]write_sel;
+  wire [1:0]write_sel_IBUF;
+  wire zero_flag;
+  wire zero_flag_OBUF;
+
+  alu alu_unit
+       (.CLK(clk_IBUF_BUFG),
+        .D(result_0),
+        .DI({rf_n_10,rf_n_11}),
+        .E(register1),
+        .O({alu_unit_n_2,alu_unit_n_3,alu_unit_n_4,alu_unit_n_5}),
+        .Q(result_OBUF),
+        .S({rf_n_6,rf_n_7,rf_n_8,rf_n_9}),
+        .carry_flag_OBUF(carry_flag_OBUF),
+        .carry_flag_reg_0(rf_n_5),
+        .\instruction[1] (alu_unit_n_10),
+        .\instruction[2] (alu_unit_n_7),
+        .\instruction[2]_0 (alu_unit_n_8),
+        .\instruction[3] (alu_unit_n_6),
+        .\instruction[3]_0 (alu_unit_n_9),
+        .instruction_IBUF(instruction_IBUF),
+        .write_enable_reg_0(register2),
+        .write_enable_reg_1(register3),
+        .write_enable_reg_2(register4),
+        .write_sel_IBUF(write_sel_IBUF),
+        .zero_flag_OBUF(zero_flag_OBUF),
+        .zero_flag_reg_0(rf_n_0));
+  OBUF carry_flag_OBUF_inst
+       (.I(carry_flag_OBUF),
+        .O(carry_flag));
+  BUFG clk_IBUF_BUFG_inst
+       (.I(clk_IBUF),
+        .O(clk_IBUF_BUFG));
+  IBUF clk_IBUF_inst
+       (.I(clk),
+        .O(clk_IBUF));
+  IBUF \instruction_IBUF[0]_inst 
+       (.I(instruction[0]),
+        .O(instruction_IBUF[0]));
+  IBUF \instruction_IBUF[1]_inst 
+       (.I(instruction[1]),
+        .O(instruction_IBUF[1]));
+  IBUF \instruction_IBUF[2]_inst 
+       (.I(instruction[2]),
+        .O(instruction_IBUF[2]));
+  IBUF \instruction_IBUF[3]_inst 
+       (.I(instruction[3]),
+        .O(instruction_IBUF[3]));
+  IBUF \read_sel1_IBUF[0]_inst 
+       (.I(read_sel1[0]),
+        .O(read_sel1_IBUF[0]));
+  IBUF \read_sel1_IBUF[1]_inst 
+       (.I(read_sel1[1]),
+        .O(read_sel1_IBUF[1]));
+  IBUF \read_sel2_IBUF[0]_inst 
+       (.I(read_sel2[0]),
+        .O(read_sel2_IBUF[0]));
+  IBUF \read_sel2_IBUF[1]_inst 
+       (.I(read_sel2[1]),
+        .O(read_sel2_IBUF[1]));
+  IBUF reset_IBUF_inst
+       (.I(reset),
+        .O(reset_IBUF));
+  OBUF \result_OBUF[0]_inst 
+       (.I(result_OBUF[0]),
+        .O(result[0]));
+  OBUF \result_OBUF[1]_inst 
+       (.I(result_OBUF[1]),
+        .O(result[1]));
+  OBUF \result_OBUF[2]_inst 
+       (.I(result_OBUF[2]),
+        .O(result[2]));
+  OBUF \result_OBUF[3]_inst 
+       (.I(result_OBUF[3]),
+        .O(result[3]));
+  register_file rf
+       (.AR(reset_IBUF),
+        .CLK(clk_IBUF_BUFG),
+        .D(result_0),
+        .DI({rf_n_10,rf_n_11}),
+        .E(register1),
+        .O({alu_unit_n_2,alu_unit_n_3,alu_unit_n_4,alu_unit_n_5}),
+        .S({rf_n_6,rf_n_7,rf_n_8,rf_n_9}),
+        .carry_flag_reg(alu_unit_n_6),
+        .instruction_IBUF(instruction_IBUF),
+        .read_sel1_IBUF(read_sel1_IBUF),
+        .read_sel2_IBUF(read_sel2_IBUF),
+        .\register2_reg[3]_0 (register2),
+        .\register3_reg[3]_0 (rf_n_5),
+        .\register3_reg[3]_1 (result_OBUF),
+        .\register3_reg[3]_2 (register3),
+        .\register4_reg[3]_0 (register4),
+        .\result[1]_i_7 (rf_n_0),
+        .\result_reg[0] (alu_unit_n_8),
+        .\result_reg[1] (alu_unit_n_9),
+        .\result_reg[3] (alu_unit_n_10),
+        .zero_flag_reg(alu_unit_n_7));
+  IBUF \write_sel_IBUF[0]_inst 
+       (.I(write_sel[0]),
+        .O(write_sel_IBUF[0]));
+  IBUF \write_sel_IBUF[1]_inst 
+       (.I(write_sel[1]),
+        .O(write_sel_IBUF[1]));
+  OBUF zero_flag_OBUF_inst
+       (.I(zero_flag_OBUF),
+        .O(zero_flag));
+endmodule
+
+module register_file
+   (\result[1]_i_7 ,
+    D,
+    \register3_reg[3]_0 ,
+    S,
+    DI,
+    zero_flag_reg,
+    \result_reg[0] ,
+    instruction_IBUF,
+    O,
+    \result_reg[3] ,
+    carry_flag_reg,
+    read_sel2_IBUF,
+    read_sel1_IBUF,
+    \result_reg[1] ,
+    E,
+    \register3_reg[3]_1 ,
+    CLK,
+    AR,
+    \register2_reg[3]_0 ,
+    \register3_reg[3]_2 ,
+    \register4_reg[3]_0 );
+  output \result[1]_i_7 ;
+  output [3:0]D;
+  output \register3_reg[3]_0 ;
+  output [3:0]S;
+  output [1:0]DI;
+  input zero_flag_reg;
+  input \result_reg[0] ;
+  input [3:0]instruction_IBUF;
+  input [3:0]O;
+  input \result_reg[3] ;
+  input carry_flag_reg;
+  input [1:0]read_sel2_IBUF;
+  input [1:0]read_sel1_IBUF;
+  input \result_reg[1] ;
+  input [0:0]E;
+  input [3:0]\register3_reg[3]_1 ;
+  input CLK;
+  input [0:0]AR;
+  input [0:0]\register2_reg[3]_0 ;
+  input [0:0]\register3_reg[3]_2 ;
+  input [0:0]\register4_reg[3]_0 ;
+
+  wire [0:0]AR;
+  wire CLK;
+  wire [3:0]D;
+  wire [1:0]DI;
+  wire [0:0]E;
+  wire [3:0]O;
+  wire [3:0]S;
+  wire carry_flag_i_3_n_0;
+  wire carry_flag_i_4_n_0;
+  wire carry_flag_reg;
+  wire [3:0]instruction_IBUF;
+  wire [3:0]operand1;
+  wire [3:0]operand2;
+  wire [1:0]read_sel1_IBUF;
+  wire [1:0]read_sel2_IBUF;
+  wire [3:0]register1;
+  wire [3:0]register2;
+  wire [0:0]\register2_reg[3]_0 ;
+  wire [3:0]register3;
+  wire \register3_reg[3]_0 ;
+  wire [3:0]\register3_reg[3]_1 ;
+  wire [0:0]\register3_reg[3]_2 ;
+  wire [3:0]register4;
+  wire [0:0]\register4_reg[3]_0 ;
+  wire result0__0_carry_i_11_n_0;
+  wire result0__0_carry_i_12_n_0;
+  wire \result[0]_i_10_n_0 ;
+  wire \result[0]_i_11_n_0 ;
+  wire \result[0]_i_12_n_0 ;
+  wire \result[0]_i_13_n_0 ;
+  wire \result[0]_i_14_n_0 ;
+  wire \result[0]_i_15_n_0 ;
+  wire \result[0]_i_16_n_0 ;
+  wire \result[0]_i_2_n_0 ;
+  wire \result[0]_i_3_n_0 ;
+  wire \result[0]_i_6_n_0 ;
+  wire \result[0]_i_7_n_0 ;
+  wire \result[0]_i_8_n_0 ;
+  wire \result[0]_i_9_n_0 ;
+  wire \result[1]_i_10_n_0 ;
+  wire \result[1]_i_11_n_0 ;
+  wire \result[1]_i_12_n_0 ;
+  wire \result[1]_i_13_n_0 ;
+  wire \result[1]_i_14_n_0 ;
+  wire \result[1]_i_2_n_0 ;
+  wire \result[1]_i_3_n_0 ;
+  wire \result[1]_i_4_n_0 ;
+  wire \result[1]_i_5_n_0 ;
+  wire \result[1]_i_6_n_0 ;
+  wire \result[1]_i_7 ;
+  wire \result[1]_i_9_n_0 ;
+  wire \result[2]_i_2_n_0 ;
+  wire \result[2]_i_3_n_0 ;
+  wire \result[2]_i_4_n_0 ;
+  wire \result[2]_i_5_n_0 ;
+  wire \result[2]_i_6_n_0 ;
+  wire \result[2]_i_7_n_0 ;
+  wire \result[3]_i_2_n_0 ;
+  wire \result[3]_i_5_n_0 ;
+  wire \result[3]_i_6_n_0 ;
+  wire \result[3]_i_7_n_0 ;
+  wire \result[3]_i_8_n_0 ;
+  wire \result_reg[0] ;
+  wire \result_reg[1] ;
+  wire \result_reg[3] ;
+  wire zero_flag_i_2_n_0;
+  wire zero_flag_i_3_n_0;
+  wire zero_flag_reg;
+
+  LUT6 #(
+    .INIT(64'h0AAA000AA8A88080)) 
+    carry_flag_i_1
+       (.I0(carry_flag_reg),
+        .I1(carry_flag_i_3_n_0),
+        .I2(operand1[3]),
+        .I3(carry_flag_i_4_n_0),
+        .I4(operand2[3]),
+        .I5(instruction_IBUF[0]),
+        .O(\register3_reg[3]_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFF880F8800000)) 
+    carry_flag_i_3
+       (.I0(operand2[0]),
+        .I1(operand1[0]),
+        .I2(operand2[1]),
+        .I3(operand1[1]),
+        .I4(operand1[2]),
+        .I5(operand2[2]),
+        .O(carry_flag_i_3_n_0));
+  LUT6 #(
+    .INIT(64'hDD4D4D44DD4DDD4D)) 
+    carry_flag_i_4
+       (.I0(operand2[2]),
+        .I1(operand1[2]),
+        .I2(operand2[1]),
+        .I3(operand1[1]),
+        .I4(operand1[0]),
+        .I5(operand2[0]),
+        .O(carry_flag_i_4_n_0));
+  LUT6 #(
+    .INIT(64'hF0FFAACCF000AACC)) 
+    carry_flag_i_5
+       (.I0(register2[3]),
+        .I1(register1[3]),
+        .I2(register4[3]),
+        .I3(read_sel2_IBUF[0]),
+        .I4(read_sel2_IBUF[1]),
+        .I5(register3[3]),
+        .O(operand2[3]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \register1_reg[0] 
+       (.C(CLK),
+        .CE(E),
+        .CLR(AR),
+        .D(\register3_reg[3]_1 [0]),
+        .Q(register1[0]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \register1_reg[1] 
+       (.C(CLK),
+        .CE(E),
+        .CLR(AR),
+        .D(\register3_reg[3]_1 [1]),
+        .Q(register1[1]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \register1_reg[2] 
+       (.C(CLK),
+        .CE(E),
+        .CLR(AR),
+        .D(\register3_reg[3]_1 [2]),
+        .Q(register1[2]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \register1_reg[3] 
+       (.C(CLK),
+        .CE(E),
+        .CLR(AR),
+        .D(\register3_reg[3]_1 [3]),
+        .Q(register1[3]));
+  FDPE #(
+    .INIT(1'b1)) 
+    \register2_reg[0] 
+       (.C(CLK),
+        .CE(\register2_reg[3]_0 ),
+        .D(\register3_reg[3]_1 [0]),
+        .PRE(AR),
+        .Q(register2[0]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \register2_reg[1] 
+       (.C(CLK),
+        .CE(\register2_reg[3]_0 ),
+        .CLR(AR),
+        .D(\register3_reg[3]_1 [1]),
+        .Q(register2[1]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \register2_reg[2] 
+       (.C(CLK),
+        .CE(\register2_reg[3]_0 ),
+        .CLR(AR),
+        .D(\register3_reg[3]_1 [2]),
+        .Q(register2[2]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \register2_reg[3] 
+       (.C(CLK),
+        .CE(\register2_reg[3]_0 ),
+        .CLR(AR),
+        .D(\register3_reg[3]_1 [3]),
+        .Q(register2[3]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \register3_reg[0] 
+       (.C(CLK),
+        .CE(\register3_reg[3]_2 ),
+        .CLR(AR),
+        .D(\register3_reg[3]_1 [0]),
+        .Q(register3[0]));
+  FDPE #(
+    .INIT(1'b1)) 
+    \register3_reg[1] 
+       (.C(CLK),
+        .CE(\register3_reg[3]_2 ),
+        .D(\register3_reg[3]_1 [1]),
+        .PRE(AR),
+        .Q(register3[1]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \register3_reg[2] 
+       (.C(CLK),
+        .CE(\register3_reg[3]_2 ),
+        .CLR(AR),
+        .D(\register3_reg[3]_1 [2]),
+        .Q(register3[2]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \register3_reg[3] 
+       (.C(CLK),
+        .CE(\register3_reg[3]_2 ),
+        .CLR(AR),
+        .D(\register3_reg[3]_1 [3]),
+        .Q(register3[3]));
+  FDPE #(
+    .INIT(1'b1)) 
+    \register4_reg[0] 
+       (.C(CLK),
+        .CE(\register4_reg[3]_0 ),
+        .D(\register3_reg[3]_1 [0]),
+        .PRE(AR),
+        .Q(register4[0]));
+  FDPE #(
+    .INIT(1'b1)) 
+    \register4_reg[1] 
+       (.C(CLK),
+        .CE(\register4_reg[3]_0 ),
+        .D(\register3_reg[3]_1 [1]),
+        .PRE(AR),
+        .Q(register4[1]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \register4_reg[2] 
+       (.C(CLK),
+        .CE(\register4_reg[3]_0 ),
+        .CLR(AR),
+        .D(\register3_reg[3]_1 [2]),
+        .Q(register4[2]));
+  FDCE #(
+    .INIT(1'b0)) 
+    \register4_reg[3] 
+       (.C(CLK),
+        .CE(\register4_reg[3]_0 ),
+        .CLR(AR),
+        .D(\register3_reg[3]_1 [3]),
+        .Q(register4[3]));
+  LUT4 #(
+    .INIT(16'h7888)) 
+    result0__0_carry_i_1
+       (.I0(operand2[1]),
+        .I1(operand1[1]),
+        .I2(operand2[2]),
+        .I3(operand1[0]),
+        .O(DI[1]));
+  LUT6 #(
+    .INIT(64'hF0FFAACCF000AACC)) 
+    result0__0_carry_i_10
+       (.I0(register2[0]),
+        .I1(register1[0]),
+        .I2(register4[0]),
+        .I3(read_sel2_IBUF[0]),
+        .I4(read_sel2_IBUF[1]),
+        .I5(register3[0]),
+        .O(operand2[0]));
+  LUT6 #(
+    .INIT(64'h8777788878887888)) 
+    result0__0_carry_i_11
+       (.I0(operand2[1]),
+        .I1(operand1[2]),
+        .I2(operand1[0]),
+        .I3(operand2[3]),
+        .I4(operand1[1]),
+        .I5(operand2[2]),
+        .O(result0__0_carry_i_11_n_0));
+  LUT2 #(
+    .INIT(4'h7)) 
+    result0__0_carry_i_12
+       (.I0(operand1[1]),
+        .I1(operand2[1]),
+        .O(result0__0_carry_i_12_n_0));
+  LUT6 #(
+    .INIT(64'hFAFC0AFCFA0C0A0C)) 
+    result0__0_carry_i_13
+       (.I0(register3[2]),
+        .I1(register1[2]),
+        .I2(read_sel1_IBUF[0]),
+        .I3(read_sel1_IBUF[1]),
+        .I4(register4[2]),
+        .I5(register2[2]),
+        .O(operand1[2]));
+  LUT2 #(
+    .INIT(4'h8)) 
+    result0__0_carry_i_2
+       (.I0(operand1[1]),
+        .I1(operand2[0]),
+        .O(DI[0]));
+  LUT6 #(
+    .INIT(64'h6A956A6A6A6A6A6A)) 
+    result0__0_carry_i_3
+       (.I0(result0__0_carry_i_11_n_0),
+        .I1(operand1[3]),
+        .I2(operand2[0]),
+        .I3(result0__0_carry_i_12_n_0),
+        .I4(operand1[0]),
+        .I5(operand2[2]),
+        .O(S[3]));
+  LUT6 #(
+    .INIT(64'h8777788878887888)) 
+    result0__0_carry_i_4
+       (.I0(operand1[0]),
+        .I1(operand2[2]),
+        .I2(operand1[1]),
+        .I3(operand2[1]),
+        .I4(operand2[0]),
+        .I5(operand1[2]),
+        .O(S[2]));
+  LUT4 #(
+    .INIT(16'h7888)) 
+    result0__0_carry_i_5
+       (.I0(operand2[0]),
+        .I1(operand1[1]),
+        .I2(operand2[1]),
+        .I3(operand1[0]),
+        .O(S[1]));
+  LUT2 #(
+    .INIT(4'h8)) 
+    result0__0_carry_i_6
+       (.I0(operand2[0]),
+        .I1(operand1[0]),
+        .O(S[0]));
+  LUT6 #(
+    .INIT(64'hF0FFAACCF000AACC)) 
+    result0__0_carry_i_7
+       (.I0(register2[1]),
+        .I1(register1[1]),
+        .I2(register4[1]),
+        .I3(read_sel2_IBUF[0]),
+        .I4(read_sel2_IBUF[1]),
+        .I5(register3[1]),
+        .O(operand2[1]));
+  LUT6 #(
+    .INIT(64'hFAFC0AFCFA0C0A0C)) 
+    result0__0_carry_i_8
+       (.I0(register3[1]),
+        .I1(register1[1]),
+        .I2(read_sel1_IBUF[0]),
+        .I3(read_sel1_IBUF[1]),
+        .I4(register4[1]),
+        .I5(register2[1]),
+        .O(operand1[1]));
+  LUT6 #(
+    .INIT(64'hF0FFAACCF000AACC)) 
+    result0__0_carry_i_9
+       (.I0(register2[2]),
+        .I1(register1[2]),
+        .I2(register4[2]),
+        .I3(read_sel2_IBUF[0]),
+        .I4(read_sel2_IBUF[1]),
+        .I5(register3[2]),
+        .O(operand2[2]));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFA8A8FFA8)) 
+    \result[0]_i_1 
+       (.I0(zero_flag_reg),
+        .I1(\result[0]_i_2_n_0 ),
+        .I2(\result[0]_i_3_n_0 ),
+        .I3(\result_reg[0] ),
+        .I4(operand1[0]),
+        .I5(\result[0]_i_6_n_0 ),
+        .O(D[0]));
+  LUT6 #(
+    .INIT(64'h4004044044404000)) 
+    \result[0]_i_10 
+       (.I0(instruction_IBUF[3]),
+        .I1(instruction_IBUF[2]),
+        .I2(operand1[0]),
+        .I3(instruction_IBUF[0]),
+        .I4(operand2[0]),
+        .I5(instruction_IBUF[1]),
+        .O(\result[0]_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'hB0FBB0FB4F044F44)) 
+    \result[0]_i_11 
+       (.I0(operand1[2]),
+        .I1(operand2[0]),
+        .I2(operand1[3]),
+        .I3(operand2[1]),
+        .I4(operand2[3]),
+        .I5(operand2[2]),
+        .O(\result[0]_i_11_n_0 ));
+  LUT2 #(
+    .INIT(4'h6)) 
+    \result[0]_i_12 
+       (.I0(operand1[1]),
+        .I1(operand2[0]),
+        .O(\result[0]_i_12_n_0 ));
+  LUT5 #(
+    .INIT(32'hFEEA5440)) 
+    \result[0]_i_13 
+       (.I0(operand2[0]),
+        .I1(\result[0]_i_15_n_0 ),
+        .I2(\result[2]_i_6_n_0 ),
+        .I3(\result[0]_i_16_n_0 ),
+        .I4(operand1[0]),
+        .O(\result[0]_i_13_n_0 ));
+  LUT5 #(
+    .INIT(32'h936C639C)) 
+    \result[0]_i_14 
+       (.I0(operand1[1]),
+        .I1(operand1[2]),
+        .I2(operand2[0]),
+        .I3(operand2[1]),
+        .I4(\result[2]_i_6_n_0 ),
+        .O(\result[0]_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000B2F3FFFF5D0C)) 
+    \result[0]_i_15 
+       (.I0(operand1[2]),
+        .I1(operand2[1]),
+        .I2(operand1[3]),
+        .I3(operand2[0]),
+        .I4(operand2[2]),
+        .I5(operand2[3]),
+        .O(\result[0]_i_15_n_0 ));
+  LUT6 #(
+    .INIT(64'hB2FFFFE800B2E800)) 
+    \result[0]_i_16 
+       (.I0(\result[1]_i_14_n_0 ),
+        .I1(operand2[2]),
+        .I2(\result[1]_i_13_n_0 ),
+        .I3(operand2[3]),
+        .I4(\result[2]_i_6_n_0 ),
+        .I5(\result[0]_i_11_n_0 ),
+        .O(\result[0]_i_16_n_0 ));
+  LUT6 #(
+    .INIT(64'hA888A8A08880A080)) 
+    \result[0]_i_2 
+       (.I0(\result[1]_i_6_n_0 ),
+        .I1(\result[0]_i_7_n_0 ),
+        .I2(\result[1]_i_5_n_0 ),
+        .I3(\result[0]_i_8_n_0 ),
+        .I4(operand2[3]),
+        .I5(\result[0]_i_9_n_0 ),
+        .O(\result[0]_i_2_n_0 ));
+  LUT5 #(
+    .INIT(32'h0066F066)) 
+    \result[0]_i_3 
+       (.I0(operand2[0]),
+        .I1(operand1[0]),
+        .I2(O[0]),
+        .I3(instruction_IBUF[1]),
+        .I4(instruction_IBUF[0]),
+        .O(\result[0]_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'hFAFC0AFCFA0C0A0C)) 
+    \result[0]_i_5 
+       (.I0(register3[0]),
+        .I1(register1[0]),
+        .I2(read_sel1_IBUF[0]),
+        .I3(read_sel1_IBUF[1]),
+        .I4(register4[0]),
+        .I5(register2[0]),
+        .O(operand1[0]));
+  LUT6 #(
+    .INIT(64'hFFFFFFFF00200000)) 
+    \result[0]_i_6 
+       (.I0(operand1[1]),
+        .I1(instruction_IBUF[1]),
+        .I2(instruction_IBUF[0]),
+        .I3(instruction_IBUF[2]),
+        .I4(instruction_IBUF[3]),
+        .I5(\result[0]_i_10_n_0 ),
+        .O(\result[0]_i_6_n_0 ));
+  LUT4 #(
+    .INIT(16'h6996)) 
+    \result[0]_i_7 
+       (.I0(\result[1]_i_10_n_0 ),
+        .I1(\result[0]_i_11_n_0 ),
+        .I2(operand2[3]),
+        .I3(\result[2]_i_6_n_0 ),
+        .O(\result[0]_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'hB2FFFFE800B2E800)) 
+    \result[0]_i_8 
+       (.I0(\result[0]_i_12_n_0 ),
+        .I1(operand2[1]),
+        .I2(\result[0]_i_13_n_0 ),
+        .I3(operand2[2]),
+        .I4(\result[1]_i_5_n_0 ),
+        .I5(\result[0]_i_14_n_0 ),
+        .O(\result[0]_i_8_n_0 ));
+  LUT4 #(
+    .INIT(16'h6996)) 
+    \result[0]_i_9 
+       (.I0(\result[1]_i_13_n_0 ),
+        .I1(\result[1]_i_14_n_0 ),
+        .I2(operand2[2]),
+        .I3(\result[2]_i_6_n_0 ),
+        .O(\result[0]_i_9_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFEFEFEEEEEEEEE)) 
+    \result[1]_i_1 
+       (.I0(\result[1]_i_2_n_0 ),
+        .I1(\result[1]_i_3_n_0 ),
+        .I2(\result[1]_i_4_n_0 ),
+        .I3(\result[1]_i_5_n_0 ),
+        .I4(\result[1]_i_6_n_0 ),
+        .I5(zero_flag_reg),
+        .O(D[1]));
+  LUT4 #(
+    .INIT(16'hBE28)) 
+    \result[1]_i_10 
+       (.I0(\result[1]_i_13_n_0 ),
+        .I1(operand2[2]),
+        .I2(\result[2]_i_6_n_0 ),
+        .I3(\result[1]_i_14_n_0 ),
+        .O(\result[1]_i_10_n_0 ));
+  LUT6 #(
+    .INIT(64'hA0FAF000A2FAF303)) 
+    \result[1]_i_11 
+       (.I0(operand1[2]),
+        .I1(operand2[3]),
+        .I2(operand2[1]),
+        .I3(operand1[3]),
+        .I4(operand2[0]),
+        .I5(operand2[2]),
+        .O(\result[1]_i_11_n_0 ));
+  LUT2 #(
+    .INIT(4'hB)) 
+    \result[1]_i_12 
+       (.I0(operand1[3]),
+        .I1(operand2[0]),
+        .O(\result[1]_i_12_n_0 ));
+  LUT5 #(
+    .INIT(32'h28BEFC30)) 
+    \result[1]_i_13 
+       (.I0(operand1[1]),
+        .I1(operand2[1]),
+        .I2(\result[2]_i_6_n_0 ),
+        .I3(operand1[2]),
+        .I4(operand2[0]),
+        .O(\result[1]_i_13_n_0 ));
+  LUT5 #(
+    .INIT(32'h936C639C)) 
+    \result[1]_i_14 
+       (.I0(operand1[2]),
+        .I1(operand1[3]),
+        .I2(operand2[0]),
+        .I3(operand2[1]),
+        .I4(\result[3]_i_6_n_0 ),
+        .O(\result[1]_i_14_n_0 ));
+  LUT6 #(
+    .INIT(64'h28082A0A20002202)) 
+    \result[1]_i_2 
+       (.I0(\result_reg[1] ),
+        .I1(instruction_IBUF[1]),
+        .I2(instruction_IBUF[0]),
+        .I3(operand1[2]),
+        .I4(operand1[1]),
+        .I5(operand1[0]),
+        .O(\result[1]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h4004444004404000)) 
+    \result[1]_i_3 
+       (.I0(instruction_IBUF[3]),
+        .I1(instruction_IBUF[2]),
+        .I2(operand1[1]),
+        .I3(operand2[1]),
+        .I4(instruction_IBUF[1]),
+        .I5(instruction_IBUF[0]),
+        .O(\result[1]_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'h00002D2DFF008787)) 
+    \result[1]_i_4 
+       (.I0(operand2[0]),
+        .I1(operand1[0]),
+        .I2(\result[1]_i_9_n_0 ),
+        .I3(O[1]),
+        .I4(instruction_IBUF[1]),
+        .I5(instruction_IBUF[0]),
+        .O(\result[1]_i_4_n_0 ));
+  LUT6 #(
+    .INIT(64'h08308E088A08AA8A)) 
+    \result[1]_i_5 
+       (.I0(\result[1]_i_10_n_0 ),
+        .I1(\result[1]_i_11_n_0 ),
+        .I2(operand2[2]),
+        .I3(\result[1]_i_12_n_0 ),
+        .I4(operand2[1]),
+        .I5(operand2[3]),
+        .O(\result[1]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFE000000000000)) 
+    \result[1]_i_6 
+       (.I0(operand2[3]),
+        .I1(operand2[2]),
+        .I2(operand2[0]),
+        .I3(operand2[1]),
+        .I4(instruction_IBUF[0]),
+        .I5(instruction_IBUF[1]),
+        .O(\result[1]_i_6_n_0 ));
+  LUT2 #(
+    .INIT(4'h9)) 
+    \result[1]_i_9 
+       (.I0(operand1[1]),
+        .I1(operand2[1]),
+        .O(\result[1]_i_9_n_0 ));
+  LUT5 #(
+    .INIT(32'hCCEECCFC)) 
+    \result[2]_i_1 
+       (.I0(\result[2]_i_2_n_0 ),
+        .I1(\result[2]_i_3_n_0 ),
+        .I2(\result[2]_i_4_n_0 ),
+        .I3(instruction_IBUF[2]),
+        .I4(instruction_IBUF[3]),
+        .O(D[2]));
+  LUT5 #(
+    .INIT(32'h00AAF033)) 
+    \result[2]_i_2 
+       (.I0(operand1[1]),
+        .I1(operand1[2]),
+        .I2(operand1[3]),
+        .I3(instruction_IBUF[0]),
+        .I4(instruction_IBUF[1]),
+        .O(\result[2]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h4004444004404000)) 
+    \result[2]_i_3 
+       (.I0(instruction_IBUF[3]),
+        .I1(instruction_IBUF[2]),
+        .I2(operand1[2]),
+        .I3(operand2[2]),
+        .I4(instruction_IBUF[1]),
+        .I5(instruction_IBUF[0]),
+        .O(\result[2]_i_3_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFF734073407340)) 
+    \result[2]_i_4 
+       (.I0(instruction_IBUF[0]),
+        .I1(instruction_IBUF[1]),
+        .I2(O[2]),
+        .I3(\result[2]_i_5_n_0 ),
+        .I4(\result[2]_i_6_n_0 ),
+        .I5(\result[1]_i_6_n_0 ),
+        .O(\result[2]_i_4_n_0 ));
+  LUT6 #(
+    .INIT(64'h20F2F880DF0D077F)) 
+    \result[2]_i_5 
+       (.I0(operand2[0]),
+        .I1(operand1[0]),
+        .I2(operand2[1]),
+        .I3(operand1[1]),
+        .I4(instruction_IBUF[0]),
+        .I5(\result[2]_i_7_n_0 ),
+        .O(\result[2]_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000023002323)) 
+    \result[2]_i_6 
+       (.I0(operand1[2]),
+        .I1(operand2[2]),
+        .I2(operand2[0]),
+        .I3(operand1[3]),
+        .I4(operand2[1]),
+        .I5(operand2[3]),
+        .O(\result[2]_i_6_n_0 ));
+  LUT2 #(
+    .INIT(4'h9)) 
+    \result[2]_i_7 
+       (.I0(operand1[2]),
+        .I1(operand2[2]),
+        .O(\result[2]_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFF10103210)) 
+    \result[3]_i_1 
+       (.I0(instruction_IBUF[3]),
+        .I1(instruction_IBUF[2]),
+        .I2(\result[3]_i_2_n_0 ),
+        .I3(\result_reg[3] ),
+        .I4(operand1[3]),
+        .I5(\result[3]_i_5_n_0 ),
+        .O(D[3]));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFF404040)) 
+    \result[3]_i_2 
+       (.I0(instruction_IBUF[0]),
+        .I1(instruction_IBUF[1]),
+        .I2(O[3]),
+        .I3(\result[1]_i_6_n_0 ),
+        .I4(\result[3]_i_6_n_0 ),
+        .I5(\result[3]_i_7_n_0 ),
+        .O(\result[3]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'hFAFC0AFCFA0C0A0C)) 
+    \result[3]_i_4 
+       (.I0(register3[3]),
+        .I1(register1[3]),
+        .I2(read_sel1_IBUF[0]),
+        .I3(read_sel1_IBUF[1]),
+        .I4(register4[3]),
+        .I5(register2[3]),
+        .O(operand1[3]));
+  LUT6 #(
+    .INIT(64'hFFFFFFFF00200000)) 
+    \result[3]_i_5 
+       (.I0(operand1[2]),
+        .I1(instruction_IBUF[2]),
+        .I2(instruction_IBUF[3]),
+        .I3(instruction_IBUF[0]),
+        .I4(instruction_IBUF[1]),
+        .I5(\result[3]_i_8_n_0 ),
+        .O(\result[3]_i_5_n_0 ));
+  LUT5 #(
+    .INIT(32'h00000051)) 
+    \result[3]_i_6 
+       (.I0(operand2[2]),
+        .I1(operand2[0]),
+        .I2(operand1[3]),
+        .I3(operand2[1]),
+        .I4(operand2[3]),
+        .O(\result[3]_i_6_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000069996966)) 
+    \result[3]_i_7 
+       (.I0(operand2[3]),
+        .I1(operand1[3]),
+        .I2(carry_flag_i_4_n_0),
+        .I3(instruction_IBUF[0]),
+        .I4(carry_flag_i_3_n_0),
+        .I5(instruction_IBUF[1]),
+        .O(\result[3]_i_7_n_0 ));
+  LUT6 #(
+    .INIT(64'h4004444004404000)) 
+    \result[3]_i_8 
+       (.I0(instruction_IBUF[3]),
+        .I1(instruction_IBUF[2]),
+        .I2(operand2[3]),
+        .I3(operand1[3]),
+        .I4(instruction_IBUF[1]),
+        .I5(instruction_IBUF[0]),
+        .O(\result[3]_i_8_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000202020202)) 
+    zero_flag_i_1
+       (.I0(zero_flag_i_2_n_0),
+        .I1(\result[0]_i_6_n_0 ),
+        .I2(zero_flag_i_3_n_0),
+        .I3(\result[0]_i_3_n_0 ),
+        .I4(\result[0]_i_2_n_0 ),
+        .I5(zero_flag_reg),
+        .O(\result[1]_i_7 ));
+  LUT3 #(
+    .INIT(8'h01)) 
+    zero_flag_i_2
+       (.I0(D[3]),
+        .I1(D[2]),
+        .I2(D[1]),
+        .O(zero_flag_i_2_n_0));
+  LUT5 #(
+    .INIT(32'h00000010)) 
+    zero_flag_i_3
+       (.I0(instruction_IBUF[1]),
+        .I1(instruction_IBUF[0]),
+        .I2(instruction_IBUF[3]),
+        .I3(instruction_IBUF[2]),
+        .I4(operand1[0]),
+        .O(zero_flag_i_3_n_0));
+endmodule
