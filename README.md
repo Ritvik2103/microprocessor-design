@@ -1,5 +1,7 @@
 # Microprocessor Design
+
 This repository contains the **Verilog** implementation of a simple microprocessor, built and tested using **Vivado**. The project includes modules for an **ALU**, **register file**, and a top-level control unit. 
+
 ---
 
 ## Features
