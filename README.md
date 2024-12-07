@@ -17,6 +17,11 @@ This repository contains the **Verilog** implementation of a simple microprocess
   - `write_enable`: Controls write-back to the register file.
   - `zero_flag` and `carry_flag`: Indicate zero results and carry conditions.
 
+- **Timing Constraints:**
+  - Proper constraints have been applied to ensure robust synthesis and timing closure.
+  - Constraints defined in `microprocessor_constraints.xdc` file, included in the repository.
+
+
 ---
 
 ## Modules Overview
@@ -39,7 +44,7 @@ The top-level module that integrates:
   | `0000`   | Add              | `operand1 + operand2`         |
   | `0001`   | Subtract         | `operand1 - operand2`         |
   | `0010`   | Multiply         | `operand1 * operand2`         |
-  | `0011`   | Divide           | Handles divide-by-zero.       |
+  | `0011`   | Divide           | `operand1 / operand2`         |
   | `0100`   | AND              | `operand1 & operand2`         |
   | `0101`   | OR               | `operand1 | operand2`         |
   | `0110`   | XOR              | `operand1 ^ operand2`         |
@@ -66,16 +71,20 @@ A testbench (`microprocessor_tb.v`) is provided to verify functionality. It:
 
 - **Synthesis:**  
   - The design was synthesized in Vivado to generate a gate-level netlist.
-  - Verified for synthesis warnings and errors.
+  - Output netlist file: `microprocessor_design.dcp`.
+
+- **Reports:**
+  - **Timing Report:** Pre-layout timing results are stored in `microprocessor_timing_report.txt`.
+  - **Resource Utilization Report:** FPGA resource usage is documented in `microprocessor_utilization_report.txt`.
+
+- **Constraints:**
+  - Timing and design constraints are defined in `microprocessor_constraints.xdc`:
+    - Clock period.
+    - Input/output delays.
+    - Reset setup requirements.
 
 - **Pre-Layout STA:**  
-  - Timing analysis performed to ensure no setup/hold violations.
-  - Confirmed timing closure for a clock period of `5.8 ns`.
+  - Timing analysis confirmed no setup or hold violations.
+  - Results verified for a clock period of `5.8 ns`.
 
 ---
-
-Note:
-- The gate level netlist of design can be accessed in `microprocessor_design`
-- The timing report of the design `microprocessor_timing_report.txt`
-- The resource utilization report of the design `microprocessor_utilization_report`
-  
