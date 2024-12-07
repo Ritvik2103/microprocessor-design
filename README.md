@@ -73,3 +73,9 @@ A testbench (`microprocessor_tb.v`) is provided to verify functionality. It:
   - Confirmed timing closure for a clock period of `5.8 ns`.
 
 ---
+
+Note:
+- The gate level netlist of design can be accessed in `microprocessor_design`
+- The timing report of the design `microprocessor_timing_report.txt`
+- The resource utilization report of the design `microprocessor_utilization_report`
+  
