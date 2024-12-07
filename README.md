@@ -73,7 +73,7 @@ A testbench (`microprocessor_tb.v`) is provided to verify functionality. It:
 
 - **Synthesis:**  
   - The design was synthesized in Vivado to generate a gate-level netlist.
-  - Output netlist file: `microprocessor_design.dcp`.
+  - Output netlist file: `microprocessor_design`.
 
 - **Reports:**
   - **Timing Report:** Pre-layout timing results are stored in `microprocessor_timing_report.txt`.
