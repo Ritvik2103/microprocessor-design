@@ -1,13 +1,12 @@
 # Microprocessor Design
 
-This repository contains the Verilog implementation of a simple 4 bit microprocessor, built and tested using **Vivado**. The project includes modules for an **ALU**, **register file**, and a top-level control unit. Functional verification, synthesis, and pre-layout static timing analysis (STA) have been successfully completed.
-
+This repository contains the Verilog implementation of a simple 4 bit microprocessor, built and tested using **Vivado**. The project includes modules for an **ALU**, **register file**, and a top-level control unit.
 ---
 
 ## Features
 
 - **4-Bit Register File:**
-  - Four general-purpose registers (`register1`, `register2`, etc.) for storing operands.
+  - Four general-purpose registers (`register1`, `register2`, `register3`, `register4`) for storing operands.
   - Read and write operations controlled by `read_sel` and `write_sel` signals.
   - Reset functionality to initialize registers to default values.
 
@@ -29,7 +28,7 @@ The top-level module that integrates:
 - **ALU:** For performing arithmetic and logic operations.
 
 ### 2. Register File (`register_file.v`)
-- Contains four 4-bit registers.
+- Contains four 4-bit registers with default values assigned.
 - Supports:
   - **Read:** Two operands can be selected using `read_sel1` and `read_sel2`.
   - **Write:** Data can be written to a specific register using `write_sel`.
